@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DeptMapper">
+
+
+<resultMap type="com.example.domain.Dept" id="deptWithEmp">
+	<id property="deptno" column="dept_deptno"/>
+	<result property="deptno" column="dept_deptno"/>
+	<result property="dname" column="dept_dname"/>
+	<result property="loc" column="dept_loc"/>
+
+<collection property="emps" ofType="com.example.domain.Emp">
+<id property="empno" column="emp_empno"/>
+<result property="ename" column="emp_ename"/>
+<result property="job" column="emp_job"/>
+<result property="mgr" column="emp_mgr"/>
+<result property="hiredate" column="emp_hiredate"/>
+<result property="sal" column="emp_sal"/>
+<result property="comm" column="emp_comm"/>
+<result property="deptno" column="emp_deptno"/>
+</collection>
+</resultMap>
+
+
+<select id="selectAllWithEmp" resultMap="deptWithEmp">
+select d.deptno     as dept_deptno, 
+	   d.dname  	as dept_dname,
+	   d.loc		as dept_loc, 
+	   e.empno  	as emp_empno,
+	   e.ename  	as emp_ename,
+	   e.job    	as emp_job, 
+	   e.mgr		as emp_mgr, 
+	   e.hiredate   as emp_hiredate,
+	   e.sal		as emp_sal, 
+	   e.comm   	as emp_comm,
+	   e.deptno 	as emp_deptno
+ from dept d left outer join emp e
+ on d.deptno=e.deptno  
+</select>
+<resultMap type="com.example.domain.Dept" id="deptWithEmp2">
+<collection property="emps" column="deptno" select="selectEmpByDeptno"/>
+</resultMap>
+<select id="selectEmpByDeptno" resultType="com.example.domain.Emp">
+select *
+from emp
+where deptno = #{dept_deptno}
+</select>
+
+<select id="selectPageWithEmp" resultMap="deptWithEmp2">
+select d2.*, d2.deptno as dept_deptno
+from dept d2
+offset #{firstItem} -1 rows
+fetch next #{itemsPerPage} row only
+</select>
+
+<select id="selectByDeptnoWithEmp" resultMap="deptWithEmp">
+select d.deptno     as dept_deptno, 
+	   d.dname  	as dept_dname,
+	   d.loc		as dept_loc, 
+	   e.empno  	as emp_empno,
+	   e.ename  	as emp_ename,
+	   e.job    	as emp_job, 
+	   e.mgr		as emp_mgr, 
+	   e.hiredate   as emp_hiredate,
+	   e.sal		as emp_sal, 
+	   e.comm   	as emp_comm,
+	   e.deptno 	as emp_deptno
+from dept d left outer join emp e
+  on d.deptno = e.deptno
+ where e.deptno=#{deptno}
+</select>
+<insert id="insert">
+insert into dept
+(
+	deptno,
+	dname,
+	loc
+)
+values
+(
+	#{deptno},
+	#{dname},
+	#{loc}
+)
+
+</insert>
+</mapper>
+
+
+
+
