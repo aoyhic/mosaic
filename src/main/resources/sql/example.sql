@@ -60,6 +60,7 @@ select 	c1.id				as city_id,
 	on c1.country_code = c2.code
 	 where c1.country_code = 'KOR';	
 	 
+	 
 --
 -- City Paging
 --

@@ -7,25 +7,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>list.jsp</title>
+<title>dept_list.jsp</title>
 
 <!-- Code Assist -->
 <c:if test="false">
 	<link rel="stylesheet" href="../code_assist/animate.css">
 	<link rel="stylesheet" href="../code_assist/bootstrap.css">
 </c:if>
-
 </head>
 <body>
-<h1>City List</h1>
-<ol>
+<c:forEach var="dept" items="${list}">
+${dept.deptno} ${dept.dname} ${dept.loc}<br>
 
-<c:forEach var="city" items="${citys}">
-	<li class="">${city.id}, ${city.name}, ${city.population}, ${city.country.name}</li>
 </c:forEach>
-
-</ol>
-
-
 </body>
 </html>

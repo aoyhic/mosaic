@@ -110,4 +110,6 @@ public class Emp {
 		this.deptno = deptno;
 	}
 
+	
+
 }

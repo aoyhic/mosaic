@@ -17,21 +17,53 @@
 
 </head>
 <body>
-<h1>City Page pageNo=${page.paging.pageNo}</h1>
+
+<a href="/city/register" class="btn btn-warning">city등록</a>
+<button type="button" class="btn btn-primary">City Page <span class="badge">pageNo=${page.paging.pageNo}</button>
+<div class="table-responsive">
+<table class="table">
+<thead>
+<tr class="info">
+<th>수정</th>
+<th>삭제</th>
+<th>No</th>
+<th>CityName</th>
+<th>CountryCode</th>
+<th>district</th>
+<th>Population</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
 <ol class="list-group">
+<li>
 	<c:forEach var="city" items="${page.citys}">
-		<li class="list-group-item-info animated zoomIn">${city.id}, <a href="/city/item/${city.id}?pageNo=${page.paging.pageNo}">${city.name}</a>, ${city.population} ${city.countryCode}</li>
+		<tr>
+		<!-- 현재 어떤 페이지에서 어떤 로우를 수정했는지 쿼리스트링 형태로 넘겨주는 것 jsp에서 처리함  -->
+		<td><button class="btn btn-default"><a href="/city/modify/${city.id}?pageNo=${page.paging.pageNo}">수정</a></button></td>
+		<td><button class="btn btn-default"><a href="/city/unregister/${city.id}?pageNo=${page.paging.pageNo}">삭제</a></button></td> 
+		<td>${city.id}</td>
+		<td><a href="/city/item/${city.id}?pageNo=${page.paging.pageNo}"> ${city.name}</a></td> 
+		<td>${city.countryCode}</td>
+		<td>${city.district}</td>
+		<td>${city.population}</td>
+		 </li>
 	</c:forEach>
 </ol>
+</tr>
+</tbody>
+</table></div>
 <hr class="animated bounce">
-
-<a href="/city/page/1">First</a>
-<a href="/city/page/${page.paging.firstPage - 1}">Prev</a>
-<c:forEach var="i" begin="${page.paging.firstPage}" end="${page.paging.lastPage }">
+<ul class="pagination">
+<li><a href="/city/page/1">First</a></li>
+<li><a href="/city/page/${page.paging.firstPage - 1}">Prev</a></li>
+<li><c:forEach var="i" begin="${page.paging.firstPage}" end="${page.paging.lastPage}">
 	<a href="/city/page/${i}">${i}</a>
-</c:forEach>
-<a href="/city/page/${page.paging.lastPage + 1}">Next</a>
-<a href="/city/page/${page.paging.totalPage}">Last</a>
+</c:forEach></li>
+<li><a href="/city/page/${page.paging.lastPage + 1}">Next</a></li>
+<li><a href="/city/page/${page.paging.totalPage}">Last</a></li>
+</ul>
 
 
 

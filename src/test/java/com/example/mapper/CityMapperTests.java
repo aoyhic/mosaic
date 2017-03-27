@@ -98,9 +98,13 @@ public class CityMapperTests {
 	@Test
 	public void test04_insert() {
 		City city = new City();
-		city.setName("xxx");
+		city.setName("database");
+		//city.setCountryCode("XYZ");
 		city.setCountryCode("KOR");
 		
+		//나라코드는 꼭 조회해봐야 함 
+		//city를 입력하려면 컨트리코드가 있어야 넣을 수 있기 때문에 컨트리를 조회해보는 것. 만약 컨트리코드가 있다면 시티를 입력할 수 있고, 컨트리코드가 없으면 그냥 없는 것으로 끝남 
+		//만약 null이면 밑의 것을 조회할 필요 없다. 
 		Country country = countryMapper.selectByCode(city.getCountryCode());
 		
 		if (country == null) {
@@ -111,6 +115,37 @@ public class CityMapperTests {
 		int cnt = cityMapper.insert(city);
 		System.out.println(cityMapper.selectById(city.getId()));
 		
+	}
+	
+	@Test
+	public void test05_updateById(){
+		//있는 걸 조회함 
+		City city = cityMapper.selectById(4106);
+		//city.setId(4106);
+		city.setName("LALALA");
+		city.setCountryCode("KOR");
+		
+		//나라코드는 꼭 조회해봐야 함 
+		//city를 입력하려면 컨트리코드가 있어야 넣을 수 있기 때문에 컨트리를 조회해보는 것. 만약 컨트리코드가 있다면 시티를 입력할 수 있고, 컨트리코드가 없으면 그냥 없는 것으로 끝남 
+		//만약 null이면 밑의 것을 조회할 필요 없다. 
+		Country country = countryMapper.selectByCode(city.getCountryCode());
+		
+		if (country == null) {
+			System.out.println("error = " + "해당 Country Code가 없습니다.");
+			return;
+		}
+		
+		int cnt = cityMapper.updateById(city);
+		System.out.println(cityMapper.selectById(city.getId()));
+		
+		
+	}
+	@Test
+	public void test06_deleteById(){
+		
+		int id = 4104;
+		int rtn = cityMapper.deleteById(id);
+		System.out.println("rtn="+rtn);
 	}
 
 }

@@ -38,6 +38,7 @@ public class Country {
 		// TODO Auto-generated constructor stub
 	}
 	
+	//json string으로 바꿔줌 
 	@Override
 	public String toString() {
 		String str= null;

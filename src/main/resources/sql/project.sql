@@ -174,10 +174,30 @@ offset 1 * 10 row
  fetch next 2*10 rows only;
  
  
+ -- select * from country where code = 'XYZ';
  
-  
-  	
+ 
+ select * from city where country_code='KOR';
+ 
+ 
+ update city
+	set name = 'xxx',
+		country_code = 'KOR',
+		district = 'yyy',
+		population = 99999
+ where  id = 2331;
+ 
+ 
+ delete from city where id = 2331;
 	
+select * from city where id>4080;	
+
+select * from player;
+select * from position;
+select * from city;
+select * from dept;
+select * from emp;
+
 	
 	
 	

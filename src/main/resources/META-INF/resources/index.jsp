@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>template.jsp</title>
+<title>index.jsp</title>
 <!-- 1. animate -->
 <link rel="stylesheet" href="/webjars/animate.css/3.5.2/animate.min.css">
 <!-- 2. bootstrap -->
@@ -25,6 +25,8 @@
 
 </head>
 <body>
-<c:redirect url="/country/page/1"/>
+<c:redirect url="/city/page/1"/>
+
+<!-- 리다이렉트, 웹브라우져야! 이 주소로 다시 접속해! 라는 의미  -->
 </body>
 </html>
