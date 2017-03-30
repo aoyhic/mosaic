@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<h1>City 삭제 성공</h1>
+<h1>선수삭제 성공</h1>
 city id = ${id}
 <hr>
 <a class="btn btn-info" href="/city/page/${param.pageNo}">이전 페이지로</a>

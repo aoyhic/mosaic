@@ -52,7 +52,7 @@ public class CityUnRegisterController {
 	
 	//그리고 리다이렉트되면 여기로 들어오는데 id를 갖고, 
 	@GetMapping("/unregisterSuccess/{id}")
-	public String registerSuccess(@PathVariable int id, Model model){
+	public String unregisterSuccess(@PathVariable int id, Model model){
 		model.addAttribute("id", id);
 		return "city/unregisterSuccess";
 	}
